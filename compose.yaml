@@ -1,0 +1,28 @@
+services:
+
+  db:
+    image: mariadb
+    environment:
+      MYSQL_RANDOM_ROOT_PASSWORD: '1'
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: wordpress
+      MYSQL_PASSWORD: wordpress
+    volumes:
+      - ./db:/var/lib/mysql
+
+  wp:
+    build: ./
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: wordpress
+      WORDPRESS_DB_NAME: wordpress
+    volumes:
+      - ./app:/var/www/html
+    ports:
+      - 8080:80
+
+networks:
+  default:
+    name: wp-xdebug-network
+
