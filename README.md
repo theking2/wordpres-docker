@@ -14,10 +14,13 @@ creates two containers `wp` (with the Dockerfile) and `db` for a standard MariaD
 
 ## Setup docker containers
 
-change `MARIADB_ROOT_PASSWORD` first time creation. After that it is fixed. So after generation of the containers you can (should) return it to its original or some other value
+Start your application by running:
 
-When you're ready, start your application by running:
-`docker compose up --build`.
+```sh
+docker compose up --build
+```
+
+or use the VSCode Docker plugin open the `compose.yaml` file and click `Run All Services`.
 
 ## Setup xdebug launch.json
 
