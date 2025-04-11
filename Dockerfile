@@ -2,13 +2,14 @@
 FROM wordpress:6.7-apache
 
 # We're going to use this path multile times. So save it in a variable.
-ARG PHP_INI="/usr/local/etc/php/php.ini"
+ARG UPLOADS_INI="/usr/local/etc/php/conf.d/uploads.ini"
 ARG XDEBUG_INI="/usr/local/etc/php/conf.d/xdebug.ini"
 
 # Install AND configure Xdebug
 RUN pecl install xdebug \
     && docker-php-ext-enable xdebug \
-    && echo "upload_max_filesize = 128M" > /usr/local/etc/php/conf.d/uploads.ini \
+    && echo "upload_max_filesize = 128M" > ${UPLOADS_INI}} \
+    && echo "post_max_size = 128M" >> ${UPLOADS_INI} \
     && echo "[xdebug]" > $XDEBUG_INI \
     && echo "xdebug.mode = debug" >> $XDEBUG_INI \
     && echo "xdebug.start_with_request = trigger" >> $XDEBUG_INI \
