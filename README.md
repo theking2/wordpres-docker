@@ -38,6 +38,8 @@ If Docker Desktop or the docker daemon is __not__ running you will see a confusi
 
 If that happens start Docker Desktop and try again.
 
+Setting up the database might take some time on slower hardware. Make sure that activity in the docker has died down.
+
 ## Setup xdebug launch.json
 
 * Install xdebug extension
@@ -51,3 +53,7 @@ If that happens start Docker Desktop and try again.
 ```
 
 and save the file. This assumes you have your webroot in a folder _app_ as indicated above.
+
+## Move the project
+
+As all key ingredients sit on in the file system, moving or copying the project is easy. Zip the project including `app` and `db` folders and unzip it somewhere else;. Make sure in Docker Desktop to shutdown the database first.
