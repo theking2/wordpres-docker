@@ -2,33 +2,52 @@
 
 ## Contents
 
+This will create a container stack by the same name as the folder it sits in. Alternative: uncomment 
+
+```yaml
+#name: project
+```
+
+at the top and change "project" to something descriptive.
+
 ### Dockerfile
 
 Dockerfile that pulls wordpress-apache and sets a couple of neccesary PHP ini-files and enables xdebug.
 
 ### compose.yaml
 
-creates two containers `wp` (with the Dockerfile) and `db` for a standard MariaDB. The root of the Apache `html` and the database data are bound to subfolders `app`  to `db` respectively
+creates two containers `wp` (with the Dockerfile) and `db` for a standard MariaDB in a stack named earlier. The root of the Apache `html` and the database data are bound to subfolders `app`  to `db` respectively. The website can be accessed by
 
-* localhost:9080/ => ./app as webroot folder
+* localhost:9080/ → ./app as webroot folder
 
 ## Setup docker containers
 
-change `MARIADB_ROOT_PASSWORD` first time creation. After that it is fixed. So after generation of the containers you can (should) return it to its original or some other value
+First start Docker Desktop. When you're ready, start your application by running:
 
-When you're ready, start your application by running:
 `docker compose up --build`.
+
+in a terminal. If you have the Docker VSCode Extention installed it is even more simple. Open the compose.yaml and just click 
+
+![image](https://github.com/user-attachments/assets/b2668f04-ad4b-4734-a777-9f0c37864da9)
+
+After this check the running state of the container in Docker Desktop.
+
+If Docker Desktop or the docker daemon is __not__ running you will see a confusing message:
+
+![image](https://github.com/user-attachments/assets/22db1c2d-e93e-4eb7-bcf4-92cc40c3bf93)
+
+If that happens start Docker Desktop and try again.
 
 ## Setup xdebug launch.json
 
 * Install xdebug extension
 * create launch.json (open the xdebug tab and click "create a launch.json file" )
-* click the gear icon and add this to the configurations section in `launch.json` file (for instance just below the `"port": 9003,` line)
+* click the gear icon and add this to the configurations section in `launch.json` file (for instance directly below the `"port": 9003,` line)
 
 ```js
 "pathMappings": {
-    "/var/www/html": "${workspaceFolder}/htdocs"
+    "/var/www/html": "${workspaceFolder}/app"
 }
 ```
 
-and save the file. This assumes you have your webroot in a folder htdocs as indicated above.
+and save the file. This assumes you have your webroot in a folder _app_ as indicated above.
