@@ -8,7 +8,7 @@ ARG XDEBUG_INI="/usr/local/etc/php/conf.d/xdebug.ini"
 # Install AND configure Xdebug
 RUN pecl install xdebug \
     && docker-php-ext-enable xdebug \
-    && echo "upload_max_filesize = 128M" > ${UPLOADS_INI}} \
+    && echo "upload_max_filesize = 128M" > ${UPLOADS_INI} \
     && echo "post_max_size = 128M" >> ${UPLOADS_INI} \
     && echo "[xdebug]" > $XDEBUG_INI \
     && echo "xdebug.mode = debug" >> $XDEBUG_INI \
