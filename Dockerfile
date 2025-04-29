@@ -1,5 +1,5 @@
 # Source image
-FROM wordpress:6.7-apache
+FROM wordpress:6.8-apache
 
 # We're going to use this path multile times. So save it in a variable.
 ARG UPLOADS_INI="/usr/local/etc/php/conf.d/uploads.ini"
