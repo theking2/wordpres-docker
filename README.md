@@ -2,13 +2,13 @@
 
 ## Contents
 
-This will create a container stack by the same name as the folder it sits in. Alternative: uncomment 
+This will create a container stack by the same name as the folder it sits in. Change project name in `.env`
 
-```yaml
-#name: project
+```env
+project=kundenname
 ```
 
-at the top and change "project" to something descriptive.
+at the top and change "kundenname" to something descriptive.
 
 ### Dockerfile
 
