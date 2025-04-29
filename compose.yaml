@@ -1,9 +1,13 @@
-#name: my-first-wordpress
+name: ${project}
 
+networks:
+  default:
+    name: ${project}
+    driver: bridge
 services:
-
   db:
     image: mariadb
+    container_name: ${project}-db
     environment:
       MYSQL_RANDOM_ROOT_PASSWORD: '1'
       MYSQL_DATABASE: wordpress
@@ -14,6 +18,9 @@ services:
 
   wp:
     build: ./
+    container_name: ${project}-wp
+    depends_on:
+      - db
     environment:
       WORDPRESS_DB_HOST: db
       WORDPRESS_DB_USER: wordpress
@@ -23,8 +30,3 @@ services:
       - ./app:/var/www/html
     ports:
       - 8080:80
-
-networks:
-  default:
-    name: wp-xdebug-network
-
