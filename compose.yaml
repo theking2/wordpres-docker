@@ -28,5 +28,7 @@ services:
       WORDPRESS_DB_NAME: wordpress
     volumes:
       - ./app:/var/www/html
+      - ./logs/:/var/www/logs      
+      - ./xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini
     ports:
       - 8080:80
