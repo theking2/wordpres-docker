@@ -1,7 +1,5 @@
 # Source image
-FROM wordpress:6.8-apache
-
-# We're going to use this path multile times. So save it in a variable.
+FROM wordpress:6.8.1-php8.3-apache
 ARG UPLOADS_INI="/usr/local/etc/php/conf.d/uploads.ini"
 
 # Install AND configure Xdebug
