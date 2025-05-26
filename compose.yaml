@@ -27,8 +27,8 @@ services:
       WORDPRESS_DB_PASSWORD: wordpress
       WORDPRESS_DB_NAME: wordpress
     volumes:
-      - ./app:/var/www/html
-      - ./logs/:/var/www/logs      
-      - ./xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini
+      - ./app:/var/www/html/wp-content
+      - ./xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini 
+      - ./logs:/var/log
     ports:
       - 8080:80
