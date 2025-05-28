@@ -19,6 +19,7 @@ Dockerfile that pulls wordpress-apache and sets a couple of neccesary PHP ini-fi
 creates two containers `wp` (with the Dockerfile) and `db` for a standard MariaDB in a stack named earlier. The root of the Apache `html` and the database data are bound to subfolders `app`  to `db` respectively. The website can be accessed by
 
 * localhost:8080/ → `./app` as `wp-content` folder
+* The rest of WordPress is irrelevant
 
 ## Setup docker containers
 
