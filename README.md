@@ -18,7 +18,8 @@ Dockerfile that pulls wordpress-apache and sets a couple of neccesary PHP ini-fi
 
 creates two containers `wp` (with the Dockerfile) and `db` for a standard MariaDB in a stack named earlier. The root of the Apache `html` and the database data are bound to subfolders `app`  to `db` respectively. The website can be accessed by
 
-* localhost:9080/ → ./app as webroot folder
+* localhost:8080/ → `./app` as `wp-content` folder
+* The rest of WordPress is irrelevant
 
 ## Setup docker containers
 
@@ -26,7 +27,7 @@ First start Docker Desktop. When you're ready, start your application by running
 
 `docker compose up --build`.
 
-in a terminal. If you have the Docker VSCode Extention installed it is even more simple. Open the compose.yaml and just click 
+in a terminal. If you have the Docker VSCode Extention installed it is even simpler. Open the `compose.yaml` and  click 
 
 ![image](https://github.com/user-attachments/assets/b2668f04-ad4b-4734-a777-9f0c37864da9)
 
@@ -40,7 +41,22 @@ If that happens start Docker Desktop and try again.
 
 Setting up the database might take some time on slower hardware. Make sure that activity in the docker has died down.
 
-## Setup xdebug launch.json
+## Visual Code
+
+Two extension are super handy:
+
+ 1) Container Tools (previous Docker)
+ 2) SQL-Tools for direct database access
+ 3) PHP Profiler, to test what took so long
+ 4) PHP Debug, to troubleshoot and step debug
+
+The last two are only needed if one does theme or plugin development. Debugging / Profiling also needs a browser xdebug plugin. Watch the `/logs` folder for apache and xdebug logs. Make sure to set the proper setting in `xdebug.ini` and reboot the web server. Also check the section on `launch.json`
+
+## Database access
+
+Normally you won't need database access from outside so the `db` server is not bridged. If you _do_ need access add a port mapping in the db service and restart the container.
+
+## Setup xdebug `launch.json`
 
 * Install xdebug extension
 * create launch.json (open the xdebug tab and click "create a launch.json file" )
