@@ -16,10 +16,12 @@ Dockerfile that pulls wordpress-apache and sets a couple of neccesary PHP ini-fi
 
 ### compose.yaml
 
-creates two containers `wp` (with the Dockerfile) and `db` for a standard MariaDB in a stack named earlier. The root of the Apache `html` and the database data are bound to subfolders `app`  to `db` respectively. The website can be accessed by
+creates two containers `wp` (with the Dockerfile) and `db` for a standard MariaDB in a stack named earlier. The root of the WordPress content folder  `html/wp'content` and the database data are bound to subfolders `app`  to `db` respectively. The website can be accessed by
 
 * localhost:8080/ → `./app` as `wp-content` folder
 * The rest of WordPress is irrelevant
+
+If the complete WordPress installation should be availebl in the `app` folder adjust the `compose.yaml` file accordingly. Remember to also adjust the `pathMappings` in the `launch.json` file accordingly.  
 
 ## Setup docker containers
 
