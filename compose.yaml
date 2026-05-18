@@ -4,6 +4,8 @@ networks:
   default:
     name: ${project}
     driver: bridge
+volume:
+  db_data:
 services:
   db:
     image: mariadb
@@ -14,7 +16,7 @@ services:
       MYSQL_USER: wordpress
       MYSQL_PASSWORD: wordpress
     volumes:
-      - ./db:/var/lib/mysql
+      - db_data:/var/lib/mysql
 
   wp:
     build: ./
