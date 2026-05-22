@@ -5,7 +5,7 @@
 This will create a container stack by the same name as the folder it sits in. Change project name in `.env`
 
 ```env
-project=kundenname
+project=project_name
 ```
 
 at the top and change "kundenname" to something descriptive.
@@ -61,17 +61,30 @@ Normally you won't need database access from outside so the `db` server is not b
 ## Setup xdebug `launch.json`
 
 * Install xdebug extension
-* create launch.json (open the xdebug tab and click "create a launch.json file" )
-* click the gear icon and add this to the configurations section in `launch.json` file (for instance directly below the `"port": 9003,` line)
+
+Tje launch.json file inludes the proper section to map the `app` folder to `wp-content` allowing debugging themes and plugins.
 
 ```js
 "pathMappings": {
-    "/var/www/html": "${workspaceFolder}/app"
+    "/var/www/html/wp-content": "${workspaceFolder}/app"
 }
 ```
 
-and save the file. This assumes you have your webroot in a folder _app_ as indicated above.
-
 ## Move the project
 
-As all key ingredients sit on in the file system, moving or copying the project is easy. Zip the project including `app` and `db` folders and unzip it somewhere else;. Make sure in Docker Desktop to shutdown the database first.
+Currently the database is created in it own volume. If the project should be transportable change the db volume mapping in db in compose.yaml from 
+
+```
+    volumes:
+      - db:/var/lib/mysql
+```
+
+to 
+
+```
+    volumes:
+      - ./db:/var/lib/mysql
+```
+
+In that case the database is created as part of the project folder.
+As all key ingredients sit on in the file system, moving or copying the project is easy. Zip the project including `app` and `db` folders and unzip it somewhere else;. Make sure to shutdown the database first.
