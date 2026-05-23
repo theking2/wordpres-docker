@@ -1,6 +1,7 @@
 name: ${project}
 volumes:
   db:
+  wp:
 networks:
   default:
     name: ${project}
@@ -18,7 +19,11 @@ services:
       - db:/var/lib/mysql
 
   wp:
-    build: ./
+    build:
+      context: ./
+      args:
+        USER_ID: ${UID:-1000}
+        GROUP_ID: ${GID:-1000}
     container_name: ${project}-wp
     depends_on:
       - db
@@ -28,6 +33,7 @@ services:
       WORDPRESS_DB_PASSWORD: wordpress
       WORDPRESS_DB_NAME: wordpress
     volumes:
+      -  wp:/var/www/html
       - ./app:/var/www/html/wp-content
       - ./xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini 
       - ./logs:/var/log
