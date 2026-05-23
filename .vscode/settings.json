@@ -1,0 +1,12 @@
+{
+    "intelephense.environment.includePaths": [
+        "vendor/php-stubs/wordpress-stubs",
+        "vendor/php-stubs/acf-pro-stubs",
+        "app/plugins/elementor"
+    ],
+    "intelephense.files.exclude": [
+        "**/.git/**",
+        "**/node_modules/**",
+        "app/plugins/!(elementor)/**"
+    ],
+}
