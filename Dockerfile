@@ -1,6 +1,8 @@
 # Source image
 FROM wordpress:7.0-php8.4-apache
 ARG UPLOADS_INI="/usr/local/etc/php/conf.d/uploads.ini"
+ARG USER_ID=1000
+ARG GROUP_ID=1000
 
 # Install AND configure Xdebug
 RUN pecl install xdebug \
