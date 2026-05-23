@@ -44,8 +44,24 @@ As this will create stuff in `vendor/` you might want to gitignore this
 ```ini
 verndor/
 ```
+Then run `composer install` to get the stubs. To make sure VScode uses them add this to the `/.vscode.settings.json`
 
-If the complete WordPress installation should be availebl in the `app` folder adjust the `compose.yaml` file accordingly. Remember to also adjust the `pathMappings` in the `launch.json` file accordingly.  
+```json
+{
+    "intelephense.environment.includePaths": [
+        "vendor/php-stubs/wordpress-stubs",
+        "vendor/php-stubs/acf-pro-stubs",
+        "app/plugins/elementor"
+    ],
+    "intelephense.files.exclude": [
+        "**/.git/**",
+        "**/node_modules/**",
+        "app/plugins/!(elementor)/**"
+    ],
+}
+```
+
+If the complete WordPress installation should be available in the `app` folder adjust the `compose.yaml` file accordingly. Remember to also adjust the `pathMappings` in the `launch.json` file accordingly.  
 
 ## Setup docker containers
 
