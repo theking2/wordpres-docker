@@ -1,4 +1,9 @@
 {
+    "browser-preview.cookies": {
+        "localhost:8080": {
+            "XDEBUG_SESSION": "PHPSTORM"
+        }
+    },
     "intelephense.environment.includePaths": [
         "vendor/php-stubs/wordpress-stubs",
         "vendor/php-stubs/acf-pro-stubs",
@@ -9,4 +14,9 @@
         "**/node_modules/**",
         "app/plugins/!(elementor)/**"
     ],
+    "git.repositoryScanMaxDepth": 3,
+    "git.scanRepositories": [
+        "app/plugins/",
+        "app/themes/"
+    ]
 }
