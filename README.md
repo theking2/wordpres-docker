@@ -21,6 +21,30 @@ creates two containers `wp` (with the Dockerfile) and `db` for a standard MariaD
 * localhost:8080/ → `./app` as `wp-content` folder
 * The rest of WordPress is irrelevant
 
+By only exposing the `wp-content folder the rest of wordpress stays in the wp volume and is accessed at a slightly higher performance. But it cannot be debugged ofcourse another down side is that wp function signatures are not available and will lead to warnings when access from pluing/theme development. To alliviated the later add the wp -stubs.
+
+## WP Stubs for development
+
+create a composer.json file (not to be confused with th compose.yaml file):
+
+**`composer.json`**
+
+```json
+{
+    "require-dev": {
+        "php-stubs/wordpress-stubs": "^6.0",
+        "php-stubs/acf-pro-stubs": "^6.0"
+    }
+}
+```
+As this will create stuff in `vendor/` you might want to gitignore this
+
+**`.gitignore`**
+
+```ini
+verndor/
+```
+
 If the complete WordPress installation should be availebl in the `app` folder adjust the `compose.yaml` file accordingly. Remember to also adjust the `pathMappings` in the `launch.json` file accordingly.  
 
 ## Setup docker containers
