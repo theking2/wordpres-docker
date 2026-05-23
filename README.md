@@ -23,45 +23,7 @@ creates two containers `wp` (with the Dockerfile) and `db` for a standard MariaD
 
 By only exposing the `wp-content folder the rest of wordpress stays in the wp volume and is accessed at a slightly higher performance. But it cannot be debugged ofcourse another down side is that wp function signatures are not available and will lead to warnings when access from pluing/theme development. To alliviated the later add the wp -stubs.
 
-## WP Stubs for development
-
-create a composer.json file (not to be confused with th compose.yaml file):
-
-**`composer.json`**
-
-```json
-{
-    "require-dev": {
-        "php-stubs/wordpress-stubs": "^6.0",
-        "php-stubs/acf-pro-stubs": "^6.0"
-    }
-}
-```
-As this will create stuff in `vendor/` you might want to gitignore this
-
-**`.gitignore`**
-
-```ini
-verndor/
-```
-Then run `composer install` to get the stubs. To make sure VScode uses them add this to the `/.vscode.settings.json`
-
-```json
-{
-    "intelephense.environment.includePaths": [
-        "vendor/php-stubs/wordpress-stubs",
-        "vendor/php-stubs/acf-pro-stubs",
-        "app/plugins/elementor"
-    ],
-    "intelephense.files.exclude": [
-        "**/.git/**",
-        "**/node_modules/**",
-        "app/plugins/!(elementor)/**"
-    ],
-}
-```
-
-If the complete WordPress installation should be available in the `app` folder adjust the `compose.yaml` file accordingly. Remember to also adjust the `pathMappings` in the `launch.json` file accordingly.  
+If the complete WordPress installation should be available in the `app` folder adjust the `compose.yaml` file accordingly. Remember to also adjust the `pathMappings` in the `launch.json` file accordingly.  See below to add stubs for WordPress to silence undefinied warnings.
 
 ## Setup docker containers
 
@@ -110,7 +72,29 @@ Tje launch.json file inludes the proper section to map the `app` folder to `wp-c
 }
 ```
 
+## WP Stubs for development
+
+The `composer.json` file (not to be confused with th `compose.yaml` file) includes settings to install the stubs in `vendor/` folder. Run `composer install` to get the stubs. To make sure VScode uses them add this to the `/.vscode.settings.json`
+
+```json
+{
+    "intelephense.environment.includePaths": [
+        "vendor/php-stubs/wordpress-stubs",
+        "vendor/php-stubs/acf-pro-stubs",
+        "app/plugins/elementor"
+    ],
+    "intelephense.files.exclude": [
+        "**/.git/**",
+        "**/node_modules/**",
+        "app/plugins/!(elementor)/**"
+    ],
+}
+```
+
+
 ## Move the project
+
+Migrate with any standard WP backup or migration tool.
 
 Currently the database is created in it own volume. If the project should be transportable change the db volume mapping in db in compose.yaml from 
 
