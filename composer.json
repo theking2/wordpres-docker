@@ -1,0 +1,6 @@
+{
+    "require-dev": {
+        "php-stubs/wordpress-stubs": "^6.0",
+        "php-stubs/acf-pro-stubs": "^6.0"
+    }
+}
