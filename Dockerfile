@@ -1,5 +1,5 @@
 # Source image
-FROM wordpress:6.8.1-php8.3-apache
+FROM wordpress:7.0-php8.4-apache
 ARG UPLOADS_INI="/usr/local/etc/php/conf.d/uploads.ini"
 
 # Install AND configure Xdebug
